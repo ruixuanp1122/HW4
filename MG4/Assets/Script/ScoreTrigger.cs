@@ -1,19 +1,16 @@
-using System;
 using UnityEngine;
+using System;
 
 public class ScoreTrigger : MonoBehaviour
 {
     public static event Action OnScored;
 
-    bool scored = false;
-
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (scored) return;
-
+        Debug.Log("Triggered by: " + other.name);
         if (other.CompareTag("Player"))
         {
-            scored = true;
+            Debug.Log("Player passed pipe!");
             OnScored?.Invoke();
         }
     }

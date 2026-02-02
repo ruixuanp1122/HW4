@@ -57,7 +57,6 @@ public class Pipe : MonoBehaviour
             1
         );
 
-        // ===== 下管 =====
         bottomCap.position = new Vector3(
             transform.position.x,
             gapCenterY - gapSize / 2f - capHeight / 2f,
@@ -81,11 +80,10 @@ public class Pipe : MonoBehaviour
             1
         );
 
-        // Score Trigger
-        scoreTrigger.position = new Vector3(
-            transform.position.x,
+        scoreTrigger.localPosition = new Vector3(
+            0f,
             gapCenterY,
-            0
+            0f
         );
     }
 
