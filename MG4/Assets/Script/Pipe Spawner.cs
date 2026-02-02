@@ -1,25 +1,29 @@
+﻿using System.Security.Cryptography;
 using UnityEngine;
-
 public class PipeSpawner : MonoBehaviour
 {
     public GameObject pipePrefab;
-    [SerializeField] float spawnRate = 2f;
-    [SerializeField] float minY = -1f;
-    [SerializeField] float maxY = 3f;
+    public float spawnInterval = 2.5f;
+    public float spawnX = 6f;
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnPipe), 1f, spawnRate);
-        Time.timeScale = 1;
+        InvokeRepeating(nameof(SpawnPipe), 1.5f, spawnInterval);
     }
 
     void SpawnPipe()
     {
-        Debug.Log("Spawn Pipe"); 
+        Camera cam = Camera.main;
 
-        float randomY = Random.Range(minY, maxY);
-        Vector3 spawnPos = new Vector3(transform.position.x, randomY, 0f);
+        float rightEdge =
+            cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
 
-        Instantiate(pipePrefab, spawnPos, Quaternion.identity);
+        Vector3 pos = new Vector3(
+            rightEdge + 3f, 
+            0f,
+            0f
+        );
+
+        Instantiate(pipePrefab, pos, Quaternion.identity);
     }
 }

@@ -24,9 +24,15 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
-            rb.AddForce(Vector2.up * flapForce, ForceMode2D.Impulse);
-            OnFlap?.Invoke();
+            Flap();
         }
+    }
+
+    void Flap()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, 0f);
+        rb.velocity = new Vector2(rb.velocity.x, flapForce);
+
+        OnFlap?.Invoke();
     }
 }

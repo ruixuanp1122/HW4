@@ -1,32 +1,35 @@
 using UnityEngine;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager Instance;
+    public static ScoreManager instance;
 
-    public int score = 0;
+    int score = 0;
+
+    [SerializeField] TextMeshProUGUI scoreText;
 
     void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        if (instance == null)
+            instance = this;
         else
             Destroy(gameObject);
     }
 
     void OnEnable()
     {
-        ScoreTrigger.OnScored += AddScore;
+        ScoreTrigger.OnScored += AddPoint;
     }
 
     void OnDisable()
     {
-        ScoreTrigger.OnScored -= AddScore;
+        ScoreTrigger.OnScored -= AddPoint;
     }
 
-    void AddScore()
+    void AddPoint()
     {
         score++;
-        Debug.Log("Score: " + score);
+        scoreText.text = score.ToString();
     }
 }

@@ -3,6 +3,10 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioSource audioSource;
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     [SerializeField] AudioClip flapClip;
     [SerializeField] AudioClip scoreClip;
